@@ -24,7 +24,9 @@ RigidResult rigid_register(
   const std::vector<double>& Yflat, int m,
   int max_iterations,
   double tolerance,
-  double w_outlier
+  double w_outlier,
+  double sigma2,
+  bool scale
 ) {
   Eigen::MatrixXd X = toMat3(Xflat, n); // target (fixed)
   Eigen::MatrixXd Y = toMat3(Yflat, m); // source (moving)
@@ -33,9 +35,8 @@ RigidResult rigid_register(
   rigid.max_iterations(max_iterations);
   rigid.tolerance(tolerance);
   rigid.outliers(w_outlier);
-  rigid.scale(false);
-
-  rigid.sigma2(1.0);
+  rigid.scale(scale);
+  rigid.sigma2(sigma2);
 
   auto res = rigid.run(X, Y);
 

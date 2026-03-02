@@ -12,5 +12,7 @@ RigidResult rigid_register(
   const std::vector<double>& Yflat, int m,
   int max_iterations,
   double tolerance,
-  double w_outlier
+  double w_outlier,
+  double sigma2 = 1.0,
+  bool scale = false
 );
