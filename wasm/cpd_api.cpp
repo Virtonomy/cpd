@@ -37,13 +37,6 @@ RigidResult rigid_register(
 
   rigid.sigma2(1.0);
 
-  if (X.cols() != Y.cols()) {
-    throw std::runtime_error("X and Y must have same dimensionality (cols)");
-  }
-  if (X.rows() <= 0 || Y.rows() <= 0) {
-    throw std::runtime_error("Empty point set");
-  }
-
   auto res = rigid.run(X, Y);
 
   RigidResult out;
