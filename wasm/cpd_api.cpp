@@ -7,7 +7,10 @@
 
 
 static Eigen::MatrixXd toMat3(const std::vector<double>& flat, int rows) {
-  if ((int)flat.size() != rows * 3) {
+  if (rows < 0) {
+    throw std::runtime_error("Rows cannot be negative");
+  }
+  if (flat.size() != static_cast<std::size_t>(rows) * 3) {
     throw std::runtime_error("Expected rows*3 elements");
   }
   Eigen::MatrixXd M(rows, 3);
